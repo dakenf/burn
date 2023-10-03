@@ -1,6 +1,6 @@
 use std::env::args;
 
-use burn::backend::ndarray::NdArrayBackend;
+use burn::backend::wgpu::{AutoGraphicsApi, WgpuBackend, WgpuDevice};
 use burn::tensor::Tensor;
 
 use burn::data::dataset::source::huggingface::MNISTDataset;
@@ -25,7 +25,8 @@ fn main() {
 
     assert!(image_index < 10000, "Image index must be less than 10000");
 
-    type Backend = NdArrayBackend<f32>;
+    let device = WgpuDevice::default();
+    type Backend = WgpuBackend<AutoGraphicsApi, f32, i32>;
 
     // Create a new model and load the state
     let model: Model<Backend> = Model::default();

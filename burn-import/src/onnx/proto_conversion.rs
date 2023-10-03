@@ -162,6 +162,7 @@ impl TryFrom<AttributeProto> for AttributeValue {
             // AttributeType::SPARSE_TENSORS => AttributeValue::SparseTensors(attr.sparse_tensors),
             // AttributeType::SPARSE_TENSOR => AttributeValue::SparseTensor(attr.sparse_tensor),
             _ => {
+                print!("{:?}", dbg!(attr.type_.unwrap()));
                 return Err(ParseError::VariantNotFound);
             }
         };

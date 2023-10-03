@@ -6,7 +6,7 @@ fn main() {
     if cfg!(feature = "embedded-model") {
         // If the embedded-model, then model is bundled into the binary.
         ModelGen::new()
-            .input("src/model/mnist.onnx")
+            .input("src/model/model.onnx")
             .out_dir("model/")
             .record_type(RecordType::Bincode)
             .embed_states(true)
@@ -14,7 +14,7 @@ fn main() {
     } else {
         // If not embedded-model, then model is loaded from the file system (default).
         ModelGen::new()
-            .input("src/model/mnist.onnx")
+            .input("src/model/model.onnx")
             .out_dir("model/")
             .run_from_script();
     }
